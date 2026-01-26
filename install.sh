@@ -26,7 +26,11 @@ fi
 chmod +x install.bin
 
 echo "Running installer..."
-sudo ./install.bin
+if [ "$(id -u)" -eq 0 ]; then
+    ./install.bin
+else
+    sudo ./install.bin
+fi
 
 # Cleanup
 rm install.bin
